@@ -16,8 +16,8 @@ const Factory = use('Factory')
 
 Factory.blueprint('App/Models/User', (faker) => {
   return {
-    username: faker.username(),
-    email: faker.email(),
+    username: 'admin',//faker.username(),
+    email: 'admin@hotmail.com',//faker.email(),
     password: '1234678',
     rol: '1'
   }
@@ -27,9 +27,19 @@ Factory.blueprint('App/Models/User', (faker) => {
 Factory.blueprint('App/Models/Product', (faker) => {
     return {
       code: faker.year(),
-      name: faker.name(),
-      description: faker.paragraph(),
+      name: 'Takis',//faker.name(),
+      description: 'Takis en presentación de 450g',//faker.paragraph(),
       //image: 'http//1270.0.0.1:333/image/'+ faker.title + '.jpg'
       image: faker.avatar({protocol: 'https'})
+    }
+  })
+
+  Factory.blueprint('App/Models/Inventory', (faker) => {
+    return {
+      product_id:'1',
+      quantity: '30',
+      price: '8',
+      user_id: '1',
+      tax: '16'
     }
   })

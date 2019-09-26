@@ -14,12 +14,12 @@ class ProductController {
         console.log('quianti: ', product.quantity);
         
         Product.create(request.all())
-        let transaction = await Transaction.create({
-            inventory_id: 0,
-            type: 1,
-            description: "Se ha agregado un producto"
-        })
-        console.log('trans: ', transaction);
+        // let transaction = await Transaction.create({
+        //     inventory_id: 0,
+        //     type: 1,
+        //     description: "Se ha agregado un producto"
+        // })
+        // console.log('trans: ', transaction);
 
         return response.status(200).json(request.all());
     }

@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| ProductSeeder
+| InventorySeeder
 |--------------------------------------------------------------------------
 |
 | Make use of the Factory instance to seed database with dummy data or
@@ -13,12 +13,11 @@
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
 
-class ProductSeeder {
+class InventorySeeder {
   async run () {
-    await Factory.model('App/Models/Product').create()
-    //create.product()
-  }
+    await Factory.model('App/Models/Inventory').create()
 
+  }
 }
 
-module.exports = ProductSeeder
+module.exports = InventorySeeder
