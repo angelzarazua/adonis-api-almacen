@@ -1,6 +1,7 @@
 'use strict'
 const User = use('App/Models/User');
 
+
 class UserController {
     async index({ request, response }) {
         let json = {
@@ -13,7 +14,7 @@ class UserController {
     async store({ request, response }) {
         console.log(request.all())
         let user = User.create(request.all())
-        return response.json(user);
+        return response.status(200).json(request.all());
     }
 
     async show({ params, request, response, view }) {

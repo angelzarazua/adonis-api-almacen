@@ -1,5 +1,7 @@
 'use strict'
 const Transaction = use('App/Models/Transaction');
+const Sale = use('App/Models/Sale');
+
 
 class TransactionController {
     async index({ request, response }) {

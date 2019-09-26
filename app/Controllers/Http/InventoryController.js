@@ -1,5 +1,7 @@
 'use strict'
 const Inventory = use('App/Models/Inventory');
+const Transaction = use('App/Models/Transaction');
+
 
 class InventoryController {
     async index({ request, response }) {
@@ -9,8 +11,8 @@ class InventoryController {
 
     async store({ request, response }) {
         console.log(request.all())
-        let inventory = Inventory.create(request.all())
-        return response.json(inventory);
+        Inventory.create(request.all())
+        return response.json(request.all());
     }
 
     async show({ params, request, response, view }) {
@@ -24,14 +26,50 @@ class InventoryController {
         let data = request.all()
         let {id} = params
         let inventory = await Inventory.find(id)
+        let cantidadFinal
+
         if (!inventory) {
             return response.status(404).json({data: 'No existe'})
         }
-        inventory.merge(data)
-        inventory.save(data)
-        console.log(id,data)
+
+        if (data.quantity == 0 && inventory.quantity == 0) {
+            return response.status(404).json({data: 'El producto ya se ha dado de baja'})
+        }
+
+        if (data.quantity == 0) {
+            console.log('Remove');
+            cantidadFinal = 0
+            inventory.quantity = 0
+        }else{
+            inventory.quantity = inventory.quantity + data.quantity
+            cantidadFinal = inventory.quantity
+        }
+
+        if (data.price == null) {
+            console.log('Es nulo!');
+        }else{
+            inventory.price = data.price
+        }
+
+        if (data.tax == null) {
+            console.log('Es nulo!');
+        }else{
+            inventory.tax = data.tax
+        }
+
+        let transaction = await Transaction.create({
+                inventory_id: inventory.id,
+                type: 3,
+                quantity: cantidadFinal,
+                description: "Se ha dado de baja al producto"
+            })
+
+        //inventory.merge(inventory)
+        inventory.save(inventory)
+        await transaction.save()
         return response.json(inventory)
     }
+
     async destroy({ params, request, response }) {
         let {id} = params
         let inventory = await Inventory.find(id)

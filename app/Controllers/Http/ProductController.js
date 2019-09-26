@@ -1,5 +1,6 @@
 'use strict'
 const Product = use('App/Models/Product');
+const Transaction = use('App/Models/Transaction');
 
 class ProductController {
     async index({ request, response }) {
@@ -9,8 +10,18 @@ class ProductController {
 
     async store({ request, response }) {
         console.log(request.all())
-        let product = Product.create(request.all())
-        return response.json(product);
+        const product = request.all()
+        console.log('quianti: ', product.quantity);
+        
+        Product.create(request.all())
+        let transaction = await Transaction.create({
+            inventory_id: 0,
+            type: 1,
+            description: "Se ha agregado un producto"
+        })
+        console.log('trans: ', transaction);
+
+        return response.status(200).json(request.all());
     }
 
     async show({ params, request, response, view }) {

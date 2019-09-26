@@ -14,7 +14,7 @@ class SaleSchema extends Schema {
       table.integer('quantity').notNullable()
       table.float('discount').notNullable()
       table.float('total').notNullable()
-      table.timestamp('date').notNullable()
+      table.timestamp('date')
       table.integer('paymenth_method ').notNullable()
       table.boolean('status').notNullable()
       table.timestamps()
