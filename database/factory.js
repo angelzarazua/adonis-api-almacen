@@ -34,7 +34,7 @@ Factory.blueprint('App/Models/Product', (faker) => {
     }
   })
 
-  Factory.blueprint('App/Models/Inventory', (faker) => {
+  /*Factory.blueprint('App/Models/Inventory', (faker) => {
     return {
       product_id:'1',
       quantity: '30',
@@ -42,4 +42,4 @@ Factory.blueprint('App/Models/Product', (faker) => {
       user_id: '1',
       tax: '16'
     }
-  })
+  })*/
