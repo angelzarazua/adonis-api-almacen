@@ -5,7 +5,7 @@ const User = use('App/Models/User');
 class UserController {
     async index({ request, response }) {
         let json = {
-            index: 'Hola'
+            index: 'Holaa'
         }
         let user = await User.query().fetch();
         return response.json(user);
