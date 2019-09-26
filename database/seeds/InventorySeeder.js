@@ -15,7 +15,7 @@ const Factory = use('Factory')
 
 class InventorySeeder {
   async run () {
-    await Factory.model('App/Models/Inventory').create()
+    //await Factory.model('App/Models/Inventory').create()
 
   }
 }
