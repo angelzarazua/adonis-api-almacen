@@ -7,7 +7,7 @@ const Env = use('Env')
 const Helpers = use('Helpers')
 
 const Url = require('url-parse')
-const DATABASE_URL = new Url(Env.get('postgres://jzgmredpcdgtvc:dfe193ff265d11b8211cc70b5515c523f95aca2ec949edacd778ea0070678a4f@ec2-174-129-227-128.compute-1.amazonaws.com:5432/d5pi1nvnfumucv'))
+//const DATABASE_URL = new Url(Env.get('postgres://jzgmredpcdgtvc:dfe193ff265d11b8211cc70b5515c523f95aca2ec949edacd778ea0070678a4f@ec2-174-129-227-128.compute-1.amazonaws.com:5432/d5pi1nvnfumucv'))
 
 module.exports = {
   /*
@@ -76,11 +76,11 @@ module.exports = {
   pg: {
     client: 'pg',
     connection: {
-      host: Env.get('DB_HOST', 'HOST'),
-      port: Env.get('DB_PORT', 'DB_PORT'),
-      user: Env.get('DB_USER', 'DB_USER'),
-      password: Env.get('DB_PASSWORD', 'DB_PASSWORD'),
-      database: Env.get('DB_DATABASE', 'DB_DATABASE')
+      host: Env.get('DB_HOST', 'localhost'),
+      port: Env.get('DB_PORT', ''),
+      user: Env.get('DB_USER', 'root'),
+      password: Env.get('DB_PASSWORD', ''),
+      database: Env.get('DB_DATABASE', 'adonis')
     },
     debug: Env.get('DB_DEBUG', false)
   }
